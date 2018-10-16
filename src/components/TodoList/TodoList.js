@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import s from './TodoList.module.css';
 import T from 'prop-types';
 import TodoItem from '../TodoItem/TodoItem';
