@@ -27,7 +27,6 @@ class App extends Component {
         this.handleAddTodo = this.handleAddTodo.bind(this);
         this.handleTodoClick = this.handleTodoClick.bind(this);
         this.handleRemoveTodoClick = this.handleRemoveTodoClick.bind(this);
-        this.getCountComplited = this.getCountComplited.bind(this);
         this.handleShowFilter = this.handleShowFilter.bind(this)
         this.handeTodoItems = this.handeTodoItems.bind(this)
   }
@@ -77,11 +76,6 @@ class App extends Component {
       this.setState({
           todos: this.state.todos.filter(i => i.id !== id)
       });
-  }
-
-
-  getCountComplited(){
-      return this.state.todos.filter(item => item.completed).length;
   }
 
 
