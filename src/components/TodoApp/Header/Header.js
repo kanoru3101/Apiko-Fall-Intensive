@@ -1,13 +1,15 @@
 import React from 'react';
 import s from './Header.module.css';
 import T from 'prop-types';
+import { Link} from "react-router-dom";
 
 
 const Header = ({
     value,
     onClick,
     onChangeText,
-    inputRef
+    inputRef,
+    match
 }) => (
     <div className={s.container}>
         <input
@@ -15,8 +17,10 @@ const Header = ({
             value={value}
             ref={inputRef}
             onChange={e => onChangeText(e.target.value)}/>
-        <button className={s.btn} onClick={onClick}>Add todo</button>
 
+        <Link to={match.url + '/add'}>
+            <button className={s.btn} onClick={onClick}>Add todo</button>
+        </Link>
     </div>
 );
 
