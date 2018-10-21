@@ -5,7 +5,6 @@ import TodoList from './TodoList/TodoList'
 import {createToto} from "../../utils/creators";
 import Filters from './Filters/Filters';
 import { Route, Switch, Redirect } from "react-router-dom";
-import NoMatch from "../Pages/No Match/NoMatch";
 
 
 class TodoApp extends Component {

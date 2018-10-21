@@ -2,32 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="578a2cca-940a-4510-9ec5-78b229d98460" name="Default Changelist" comment="Task 2 - Todo">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Tora.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Pages/About/About.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Pages/About/About.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Pages/Home/Home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Pages/Home/Home.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Pages/No Match/NoMatch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Pages/No Match/NoMatch.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TodoApp/TodoApp.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TodoApp/TodoApp.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TodoApp/TodoList/TodoList.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/ScrollToTop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Filters/Filters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TodoApp/Filters/Filters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Filters/Filters.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TodoApp/Filters/Filters.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TodoApp/Header/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TodoApp/Header/Header.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TodoItem/TodoItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TodoApp/TodoItem/TodoItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TodoItem/TodoItem.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TodoApp/TodoItem/TodoItem.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TodoList/TodoList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TodoApp/TodoList/TodoList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TodoList/TodoList.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TodoApp/TodoApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TodoApp/TodoApp.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -140,8 +115,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/TodoApp/TodoApp.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="170" column="24" selection-start-line="170" selection-start-column="24" selection-end-line="170" selection-end-column="24" />
+            <state relative-caret-position="102">
+              <caret line="6" column="59" selection-start-line="6" selection-start-column="59" selection-end-line="6" selection-end-column="59" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -471,12 +446,12 @@
       <workItem from="1539796935080" duration="6553000" />
       <workItem from="1539951337377" duration="2660000" />
       <workItem from="1539954120082" duration="19792000" />
-      <workItem from="1540126951764" duration="5808000" />
+      <workItem from="1540126951764" duration="5977000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66328000" />
+    <option name="totallyTimeSpent" value="66497000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -493,10 +468,10 @@
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.21502976" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.21502976" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3295082" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5014881" side_tool="true" visible="true" weight="0.083606556" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="1" sideWeight="0.5014881" side_tool="true" visible="true" weight="0.12295082" />
       <window_info anchor="bottom" id="Version Control" order="2" sideWeight="0.49925596" weight="0.0852459" />
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="4" />
@@ -761,8 +736,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/TodoApp/TodoApp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="170" column="24" selection-start-line="170" selection-start-column="24" selection-end-line="170" selection-end-column="24" />
+        <state relative-caret-position="102">
+          <caret line="6" column="59" selection-start-line="6" selection-start-column="59" selection-end-line="6" selection-end-column="59" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
