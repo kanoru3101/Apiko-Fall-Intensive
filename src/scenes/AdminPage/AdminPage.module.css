@@ -1,0 +1,13 @@
+
+
+.container{
+    display: flex;
+    padding-top: 20px;
+}
+
+.list{
+    text-align: left;
+    padding-left: 20px;
+    text-decoration: none;
+
+}
