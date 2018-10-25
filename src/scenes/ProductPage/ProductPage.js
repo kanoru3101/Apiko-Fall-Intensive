@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import s from './ProductPage.module.css';
-import {ProductComponent} from "../../components/ProductComponent/ProductComponent";
 import {routes} from "../../routes";
-
+import { Container, Row, Col, Button } from 'reactstrap';
 
 export class ProductPage extends Component {
     constructor(props) {
@@ -33,31 +32,31 @@ export class ProductPage extends Component {
 
 export const ProductPageContainer = ({product: {id, title, description, price, image}, backToAllProducts}) => (
 
-    <div className={s.container}>
-        <div className={s.content}>
-            <div className={s.imageStyle}>
-                <img src={image} title={title}/>
-            </div>
-            <div>
+    <Container className={s.container}>
+        <Row className={s.content}>
+            <Col sm={5}>
+                <img src={image} className={s.img} alt={title} style={{maxWidth: 250}}/>
+            </Col>
+            <Col sm={7}>
                 <div className={s.title}>
                     <h2>{title}</h2>
                 </div>
-                <div className={s.price}>
+                <div className={s.price} style={{paddingTop: 10}}>
                     <h4><p>Ціна: {price} UAH</p> </h4>
                 </div>
                 <div className={s.description}>
-                    <p>Опис:</p>
+                    <h4><p>Опис:</p></h4>
                     <p>{description}</p>
                 </div>
                 <div className={s.divBtn}>
-                    <button onClick={() => backToAllProducts()}>Other products</button>
+                    <Button style={{marginBottom: 10}} onClick={() => backToAllProducts()}>Other products</Button>
                 </div>
-            </div>
-        </div>
+            </Col>
+        </Row>
 
 
 
-    </div>
+    </Container>
 );
 
 

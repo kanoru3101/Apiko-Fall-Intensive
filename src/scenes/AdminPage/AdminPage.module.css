@@ -2,12 +2,24 @@
 
 .container{
     display: flex;
-    padding-top: 20px;
+    width: 100%;
+    justify-content: center;
+    flex-direction: row;
+
 }
 
-.list{
+.addBtn{
+    display: flex;
+}
+
+
+
+.listProduct{
     text-align: left;
     padding-left: 20px;
     text-decoration: none;
+
+    flex-wrap: wrap;
+    align-items: center;
 
 }

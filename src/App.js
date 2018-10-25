@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.module.css';
-import {Link, Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import {routes} from "./routes";
 import AdminPage from './scenes/AdminPage/AdminPage'
 import {products} from "./data/products";
@@ -9,6 +9,8 @@ import s from './App.module.css';
 import {ProductPage} from "./scenes/ProductPage/ProductPage";
 import {Header} from "./scenes/Header/Header";
 import {Footer} from "./scenes/Footer/Footer";
+import ReactModal from 'react-modal';
+import {Modal} from "./Modal/Modal";
 
 
 class App extends Component {
@@ -17,8 +19,12 @@ class App extends Component {
 
       this.state = {
           products: [],
-          loading: true
+          loading: true,
+          showModal: false,
+          isAddProductModal: false
+
       };
+
     }
 
     async componentDidMount(){
@@ -53,9 +59,25 @@ class App extends Component {
         })
     );
 
-    addProduct = (items) => (
-        console.log("Add new product", items)
-    );
+
+
+
+    addProduct = (newProduct) => {
+        console.log('new',newProduct);
+        console.log('data',this.state.products[1]);
+
+        this.setState({
+            products: [...this.state.products, newProduct],
+            isAddProductModal: false
+        });
+    };
+
+    showAddProductModal = () => {
+        this.setState({ isAddProductModal: true });
+    };
+
+
+
 
 
 
@@ -64,6 +86,7 @@ class App extends Component {
         if (this.state.loading){
           return <div>Loading...</div>
         }
+
 
         return (
           <div className={s.App}>
@@ -88,7 +111,7 @@ class App extends Component {
                                      productList={this.state.products}
                                      updateProduct={this.updateProduct}
                                      deleteProduct={this.deleteProduct}
-                                     addProduct={this.addProduct}
+                                     showAddProductModal={this.showAddProductModal}
                                      {...renderProps}/>
                          }
                      />
@@ -99,9 +122,29 @@ class App extends Component {
                              (renderProps) =>
                                  <ProductPage
                                      productList={this.state.products}
-
                                      {...renderProps}
                                  />}
+                     />
+
+
+                     <Route
+                         path={"/"}
+                         render={
+                            (renderProps) =>
+                              <ReactModal
+                                    isOpen={true}
+                                    ariaHideApp={false}
+                              >
+
+                                    <Modal
+                                        {...renderProps}
+                                        data = {this.state.products}
+                                        addProduct={this.addProduct}
+
+                                    />
+                              </ReactModal>
+
+                         }
                      />
 
                  </Switch>

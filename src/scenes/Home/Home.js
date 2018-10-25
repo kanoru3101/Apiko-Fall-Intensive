@@ -1,24 +1,20 @@
 import React from 'react';
-import s from "../AdminPage/AdminPage.module.css";
 import {Route} from "react-router-dom";
 import ProductLink from "../../components/ProductLink/ProductLink";
-import {routes} from "../../routes";
-import {ProductContainer} from "../../components/ProductComponent/ProductComponent";
-import {ProductPage} from "../ProductPage/ProductPage";
 
+import { Container, Row, Col } from 'reactstrap';
 
 
 export const Home = ({productList, match}) => (
-    <div>
-        <Route
+    <Container>
+        <Row>
+            <Route
+                path={match.path}
+                render={() => productList.map(({title, id, image, price}) =>
+                    <ProductLink key={id} id={id} title={title} image={image} price={price} typeShow={'user'}/>)}
+            />
+        </Row>
 
-            path={match.path}
-            render={() => productList.map(({title, id}) =>
-                <ProductLink key={id} id={id} title={title} typeShow={'user'}/>)}
-        />
-
-
-
-    </div>
+    </Container>
 );
 

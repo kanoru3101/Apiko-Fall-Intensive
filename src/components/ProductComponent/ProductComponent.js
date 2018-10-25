@@ -2,34 +2,58 @@ import React, {Component} from 'react';
 import {productPropTypes} from "../../common/propTypes";
 import s from './ProductComponent.module.css';
 import {routes} from "../../routes";
+import {Form, Col, Row, Container, Button, FormGroup, Input, Label} from 'reactstrap';
 
 
 export const ProductComponent = ({id, title, description, image, price, onChange, onSubmit, deleteProduct}) => (
+<Container>
+  <Form onSubmit={onSubmit} className={s.formStyle}>
+    <FormGroup className={s.container}>
+        <Row>
+        <Col sm={12} className={s.boxInput}>
+            <Label for={title}>Title</Label>
+            <Input name='title' value={title} onChange={onChange('title')}/>
+        </Col>
+        <Col sm={12} className={s.boxInput}>
+            <Label for={description}>Description</Label>
+            <Input type="textarea"  rows={4} name='description' value={description} onChange={onChange('description')}/>
+        </Col>
+        <Col sm={12} className={s.boxInput}>
+            <Label for={image}>Image</Label>
+            <Row className={s.imageDiv}>
+                <Col sm={10}>
+                    <Input name='image' value={image} onChange={onChange('image')}/>
+                </Col>
+                <Col sm={2}>
+                    <img src={image} alt={title} style={{maxHeight: 100, }}/>
+                </Col>
+            </Row>
+        </Col>
+        <Col sm={12} className={s.boxInput}>
+            <Label for={price}>Price</Label>
+            <Row>
+                <Col sm={4}>
+                    <Input name='price' value={price} onChange={onChange('price')}/>
+                </Col>
+                <Row>
+                    <Col sm={1}>
 
-  <form onSubmit={onSubmit} className={s.formStyle}>
-    <div className={s.container}>
-        <div className={s.input}>
-            <input name='title' value={title} onChange={onChange('title')}/>
-        </div>
-        <div>
-            <textarea name='description' value={description} onChange={onChange('description')}/>
-        </div>
-        <div >
-            <input className={s.input} name='image' value={image} onChange={onChange('image')}/>
-        </div>
-        <div>
-            <input name='price' value={price} onChange={onChange('price')}/>
-        </div>
-        <div>
-            <button  type='submit' >Save</button>
-        </div>
-        <div>
-            <button  type='button' onClick={() => deleteProduct(id)}>Delete</button>
-        </div>
+                    </Col>
+                    <Col sm={5}>
+                        <Button  className="float-right" type='button' onClick={() => deleteProduct(id)}>Delete</Button>
+                    </Col>
+                    <Col sm={5}>
+                        <Button  className="float-right" type='submit' >Save</Button>
+                    </Col>
+                </Row>
 
 
-    </div>
-  </form>
+            </Row>
+        </Col>
+        </Row>
+    </FormGroup>
+  </Form>
+</Container>
 );
 
 
