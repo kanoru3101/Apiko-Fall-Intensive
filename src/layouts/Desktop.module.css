@@ -42,14 +42,3 @@ li{
   color: #7D7C7D;
 }
 
-li a.active {
-  color: #000000;
-  border-bottom: 2px solid #000000;
-  font-weight: 300;
-}
-
-li a:hover {
-  color: #B6B6B6;
-  border-bottom: 4px solid #673ab7;
-
-}

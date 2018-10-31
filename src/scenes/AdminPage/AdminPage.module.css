@@ -10,15 +10,14 @@
 
 .addBtn{
     display: flex;
+    margin-bottom: 10px;
 }
-
 
 
 .listProduct{
     text-align: left;
     padding-left: 20px;
     text-decoration: none;
-
     flex-wrap: wrap;
     align-items: center;
 

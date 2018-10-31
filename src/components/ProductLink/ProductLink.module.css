@@ -1,23 +1,17 @@
 
-.itemAdmin{
+.itemAdmin {
     padding: 5px;
     background-color: #d3d2d3;
     text-decoration: none;
     margin-top: 5px;
     margin-bottom: 5px;
-    width: 100%;
-
-}
-
-.titleAdmin{
-    justify-items: center;
+    max-width: 100%;
     align-items: center;
-    max-width: 50%;
+    justify-content: center;
     text-align: left;
 }
 
 .containerUser{
-
     border: 1px solid black;
 }
 
@@ -27,10 +21,7 @@
     padding-right: 0;
 }
 
-.content{
-    display: flex;
 
-}
 
 .rowStyle{
     padding-left: 0;
@@ -40,9 +31,8 @@
 
 
 .divImage{
-
     justify-items: center;
-    align-items: center;
+    align-self: center;
     padding-top: 20px;
     max-width: 150px;
     max-height: 150px;
@@ -54,7 +44,9 @@
     align-items: center;
     height: 100%;
     position: relative;
-    min-height: 150px;;
+    min-height: 150px;
+    list-style-type: none;
+    text-decoration: none;
 }
 
 .image{
@@ -62,10 +54,6 @@
     max-width: 100px;
 }
 
-.titleStyle{
-    padding-top: 20px;
-
-}
 
 .priceStyle{
     text-decoration: none;

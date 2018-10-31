@@ -1,23 +1,47 @@
 import {Link} from "react-router-dom";
 import {routes} from "../../routes";
 import React from "react";
-import s from './Header.module.css';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 
-export const Header = () => (
-    <header className={s.header}>
-        <div className={s.div1}>
-            <nav className={s.div1}>
-                <ul className={s["main-nav"]}>
-                    <li>
+
+const styles = {
+    root: {
+        flexGrow: 1,
+    },
+    typography: {
+        paddingRight: 30,
+    }
+};
+
+const Header = () => {
+
+    return (
+        <div className={styles.root}>
+            <AppBar position="static" color="default">
+                <Toolbar>
+
+                    <Typography variant="h6" color="inherit" style={styles.typography} >
                         <Link to={routes.home}>Home</Link>
-                    </li>
-                    <li>
-                        <Link to={routes.admin}>Admin</Link>
-                    </li>
+                    </Typography>
 
-                </ul>
-            </nav>
+                    <Typography variant="h6" color="inherit" style={styles.typography} >
+                        <Link to={routes.admin}>Admin</Link>
+                    </Typography>
+
+                    <Typography variant="h6" color="inherit" style={styles.typography} >
+                        <Link to={routes.cart}>Cart</Link>
+                    </Typography>
+
+
+                </Toolbar>
+            </AppBar>
         </div>
-    </header>
-)
+
+    );
+};
+
+export default withStyles(styles)(Header);
