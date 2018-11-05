@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as productsActions from '../../modules/products/productsActions';
+import * as productsOperations from '../../modules/products/productsOperations';
 import {Route, Switch} from "react-router-dom";
 import ProductListView from "./UserProductListView";
 import * as Api from "../../api/Api";
@@ -11,10 +11,8 @@ import {ProductPage} from "../../components/ProductPage/ProductPage";
 
 class HomeContainer extends React.Component{
 
-    async componentDidMount(){
-        const productData = await Api.products.fetchProducts();
-
-        this.props.fetchProducts(productData.data)
+    componentDidMount(){
+        this.props.fetchProducts()
     }
 
 
@@ -32,8 +30,16 @@ class HomeContainer extends React.Component{
 
     render(){
 
-        if (this.props.products.length === 0){
+        if (this.props.isLoading){
             return <div>Loading...</div>
+        }
+
+        if (this.props.isError){
+            return (
+                <React.Fragment>
+                    <h1>Error....</h1>
+                    <p>{this.props.error}</p>
+                </React.Fragment>);
         }
 
         return(
@@ -64,11 +70,14 @@ class HomeContainer extends React.Component{
 
 const mapStateToProps = (state) => ({
     products: state.products.products,
+    isLoading: state.products.isLoading,
+    isError: !!state.products.error,
+    error: state.products.error,
 });
 
 
 const mapStateToDispatch = {
-  fetchProducts: productsActions.fetchProducts,
+  fetchProducts: productsOperations.fetchProducts,
 };
 
 export default connect(
