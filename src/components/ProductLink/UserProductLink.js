@@ -6,6 +6,7 @@ import {routes} from "../../routes";
 import s from './ProductLink.module.css';
 import Button from '@material-ui/core/Button';
 import PageviewIcon from '@material-ui/icons/Pageview';
+import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -23,7 +24,7 @@ const styles = theme => ({
     },
 });
 
-const ProductLink = ({id, title, image, description, price}) => (
+const ProductLink = ({id, title, image, description, price, onAddToCart, item}) => (
     <Grid item xs={6}>
         <Paper elevation={4}>
             <Grid item xs={12} >
@@ -45,17 +46,21 @@ const ProductLink = ({id, title, image, description, price}) => (
                             </Grid>
                             <Grid item xs={12}>
                                 <Grid container alignItems={"center"} justify={"flex-start"}>
-                                    <Grid item xs={8}>
+                                    <Grid item xs={6}>
                                         <Grid container>
                                             <Grid item xs={12}>
                                                 <Typography  align={"left"} variant={"subheading"}>
-                                                    Price: {price} грн
+                                                   {price} грн
                                                 </Typography>
 
                                             </Grid>
                                         </Grid>
                                     </Grid>
-                                    <Grid item xs={4}>
+                                    <Grid item xs={6}>
+
+                                        <Button variant={"fab"} color={"primary"} mini onClick={() => onAddToCart(item)}>
+                                            <AddIcon/>
+                                        </Button>
                                         <Link to={formatRoute(routes.productPage, {id})}>
                                             <Button variant="fab" color="primary" mini>
                                                 <PageviewIcon/>

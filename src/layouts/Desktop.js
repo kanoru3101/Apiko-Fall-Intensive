@@ -7,6 +7,7 @@ import s from './Desktop.module.css';
 import Header from "../scenes/Header/Header";
 import Footer from "../scenes/Footer/Footer";
 import AdminContainer from "../scenes/AdminPage/AdminContainer";
+import CartContainer from "../scenes/Cart/CartContainer";
 
 
 
@@ -35,6 +36,11 @@ class Desktop extends Component {
                       <Route
                           path={routes.productPage}
                           component={HomeContainer}
+                      />
+
+                      <Route
+                          path={routes.cart}
+                          component={CartContainer}
                       />
                   </Switch>
 

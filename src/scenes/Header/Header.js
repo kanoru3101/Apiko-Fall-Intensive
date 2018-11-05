@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import {routes} from "../../routes";
 import React from "react";
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,7 +18,7 @@ const styles = {
     }
 };
 
-const Header = () => {
+const Header = ({cartItemsCount}) => {
 
     return (
         <div className={styles.root}>
@@ -33,7 +34,7 @@ const Header = () => {
                     </Typography>
 
                     <Typography variant="h6" color="inherit" style={styles.typography} >
-                        <Link to={routes.cart}>Cart</Link>
+                        <Link to={routes.cart}>Cart ({cartItemsCount})</Link>
                     </Typography>
 
 
@@ -44,4 +45,9 @@ const Header = () => {
     );
 };
 
-export default withStyles(styles)(Header);
+const mapStateToProps = (state) => ({
+    cartItemsCount: state.cart.items.length,
+});
+
+
+export default connect(mapStateToProps)(withStyles(styles)(Header));

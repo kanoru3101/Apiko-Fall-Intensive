@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as productsOperations from '../../modules/products/productsOperations';
+import * as cartActions from '../../modules/cart/cartActions';
 import {Route, Switch} from "react-router-dom";
 import ProductListView from "./UserProductListView";
-import * as Api from "../../api/Api";
+
 import {routes} from "../../routes";
 import {ProductPage} from "../../components/ProductPage/ProductPage";
+import ProductLink from "../../components/ProductLink/UserProductLink";
 
 
 
@@ -28,6 +30,8 @@ class HomeContainer extends React.Component{
         this.setState({ showModal: false });
     };
 
+
+
     render(){
 
         if (this.props.isLoading){
@@ -48,7 +52,10 @@ class HomeContainer extends React.Component{
                     exact
                     path={routes.home}
                     render={() =>
-                        <ProductListView {...this.props}/>
+                        <ProductListView
+                            products={this.props.products}
+                            onAddToCart={this.props.addToCart}
+                        />
                     }
 
                 />
@@ -77,7 +84,8 @@ const mapStateToProps = (state) => ({
 
 
 const mapStateToDispatch = {
-  fetchProducts: productsOperations.fetchProducts,
+    fetchProducts: productsOperations.fetchProducts,
+    addToCart: cartActions.add,
 };
 
 export default connect(
