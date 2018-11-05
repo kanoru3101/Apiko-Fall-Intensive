@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as productsActions from '../../modules/products/productsActions';
 import {Route, Switch} from "react-router-dom";
 import ProductListView from "./UserProductListView";
 import * as Api from "../../api/Api";
@@ -9,24 +11,10 @@ import {ProductPage} from "../../components/ProductPage/ProductPage";
 
 class HomeContainer extends React.Component{
 
-    constructor(props){
-        super(props);
-        this.state = {
-            products: [],
-            loading: true,
-            showModal: false,
-            typeModal: null
-        };
-    }
-
-
     async componentDidMount(){
-        const [ productData ] = await HomeContainer.fetchData();
-        this.setState({
-            products: productData.data,
-            loading: false
-        });
+        const productData = await Api.products.fetchProducts();
 
+        this.props.fetchProducts(productData.data)
     }
 
 
@@ -44,7 +32,7 @@ class HomeContainer extends React.Component{
 
     render(){
 
-        if (this.state.loading){
+        if (this.props.products.length === 0){
             return <div>Loading...</div>
         }
 
@@ -54,7 +42,7 @@ class HomeContainer extends React.Component{
                     exact
                     path={routes.home}
                     render={() =>
-                        <ProductListView {...this.state}/>
+                        <ProductListView {...this.props}/>
                     }
 
                 />
@@ -63,7 +51,6 @@ class HomeContainer extends React.Component{
                     path={routes.productPage}
                     render={() =>
                         <ProductPage
-                            {...this.state}
                             {...this.props}
                         />}
                 />
@@ -73,10 +60,18 @@ class HomeContainer extends React.Component{
     }
 }
 
-HomeContainer.fetchData = (params) => Promise.all([
-    Api.products.fetchProducts(),
-]);
 
 
+const mapStateToProps = (state) => ({
+    products: state.products.products,
+});
 
-export default HomeContainer;
+
+const mapStateToDispatch = {
+  fetchProducts: productsActions.fetchProducts,
+};
+
+export default connect(
+    mapStateToProps,
+    mapStateToDispatch,
+    )(HomeContainer);
