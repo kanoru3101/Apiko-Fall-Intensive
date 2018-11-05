@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as productsOperations from '../../modules/products/productsOperations';
+import * as productsSelectors from '../../modules/products/productsSelectors';
 import * as cartActions from '../../modules/cart/cartActions';
 import {Route, Switch} from "react-router-dom";
 import ProductListView from "./UserProductListView";
-
 import {routes} from "../../routes";
 import {ProductPage} from "../../components/ProductPage/ProductPage";
 import ProductLink from "../../components/ProductLink/UserProductLink";
@@ -76,7 +76,7 @@ class HomeContainer extends React.Component{
 
 
 const mapStateToProps = (state) => ({
-    products: state.products.products,
+    products: productsSelectors.getProducts(state),
     isLoading: state.products.isLoading,
     isError: !!state.products.error,
     error: state.products.error,
