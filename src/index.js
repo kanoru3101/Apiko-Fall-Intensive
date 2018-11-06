@@ -8,6 +8,13 @@ import {Provider} from 'react-redux';
 import store from './store/store';
 
 
+store.subscribe(() => {
+    const state = store.getState();
+    const json = JSON.stringify(state);
+
+    window.localStorage.setItem('redux', json)
+});
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>

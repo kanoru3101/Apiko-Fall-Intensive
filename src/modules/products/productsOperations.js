@@ -1,30 +1,27 @@
+import {normalize} from 'normalizr';
+import * as schemes from '../../api/schemes';
 import * as actions from './productsActions';
 import * as Api from '../../api/Api';
 
 
-const normalize  = (arr, useId='id') =>
-    arr.reduce((acc, current) => {
-        const id = current[useId];
-        acc.ids.push(id);
-        acc.entities[id] = current;
 
-        return acc;
-},{
-    ids: [],
-    entities: {},
-});
-
-
-export const fetchProducts = () => async (dispatch) => {
+export const fetchProducts = (refresh) => async (dispatch, getState) => {
   try {
-      dispatch(actions.fetchProductsStart());
 
+      const {ids} = getState().products;
+
+      if (ids.length > 0 && !refresh) {
+          return;
+      }
+
+      dispatch(actions.fetchProductsStart());
       const res = await Api.products.fetchProducts();
-      const {ids, entities} = normalize(res.data);
+      const {result, entities} = normalize(res.data, schemes.ProductCollection);
+
 
       dispatch(actions.fetchProductsOk({
-          ids,
-          entities: { products: entities}
+          ids: result,
+          entities,
       }));
   }catch (err) {
     dispatch(actions.fetchProductsError(err.message))

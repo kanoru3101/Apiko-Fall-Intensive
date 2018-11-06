@@ -3,7 +3,7 @@ import * as constants from './productsConstants';
 
 
 const initialState={
-    products: [],
+    ids: [],
     isLoading: false,
     error: null,
 };
@@ -18,7 +18,7 @@ export default handleActions(
     [constants.FETCH_PRODUCTS_OK]: (state, actions) => ({
         ...state,
         isLoading: false,
-        products: actions.payload.ids,
+        ids: actions.payload.ids,
     }),
     [constants.FETCH_PRODUCTS_ERROR]: (state, actions) => ({
         ...state,

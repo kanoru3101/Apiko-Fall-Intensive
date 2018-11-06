@@ -6,6 +6,7 @@ import * as cartActions from '../../modules/cart/cartActions';
 import {Route, Switch} from "react-router-dom";
 import ProductListView from "./UserProductListView";
 import {routes} from "../../routes";
+import ProductContainer from '../ProductPage/ProductPage'
 import {ProductPage} from "../../components/ProductPage/ProductPage";
 import ProductLink from "../../components/ProductLink/UserProductLink";
 
@@ -62,10 +63,7 @@ class HomeContainer extends React.Component{
 
                 <Route
                     path={routes.productPage}
-                    render={() =>
-                        <ProductPage
-                            {...this.props}
-                        />}
+                    component={ProductContainer}
                 />
             </Switch>
 
