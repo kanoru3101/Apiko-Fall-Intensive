@@ -26,6 +26,7 @@ const ProductListView = ({
 
         </Grid>
         <Grid item xs={12}>
+            {console.log(products)}
             {products.map(({title, id, image}) =>
                 <ProductLink
                     key={id}

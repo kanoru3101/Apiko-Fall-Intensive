@@ -6,6 +6,7 @@ import {ProductComponentView} from "./ProductComponentView";
  class ProductContainer extends Component{
     constructor(props){
         super(props);
+
         const { match: {params}, products } = props;
         const product = products.find(({id}) => params.id === id);
         this.state = {
@@ -22,7 +23,7 @@ import {ProductComponentView} from "./ProductComponentView";
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.updateProduct(this.state);
+        this.props.updateProducts(this.state);
         this.props.history.push(routes.admin);
     };
 

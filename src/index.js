@@ -5,21 +5,19 @@ import Desktop from './layouts/Desktop';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import store from './store/store';
+
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './store/store';
 
 
-store.subscribe(() => {
-    const state = store.getState();
-    const json = JSON.stringify(state);
-
-    window.localStorage.setItem('redux', json)
-});
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
-            <Desktop />
-        </BrowserRouter>
+        <PersistGate loading={null} persistor={persistor}>
+            <BrowserRouter>
+                <Desktop />
+            </BrowserRouter>
+        </PersistGate>
     </Provider>
     , document.getElementById('root'));
 

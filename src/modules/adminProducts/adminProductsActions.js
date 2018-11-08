@@ -1,5 +1,6 @@
-import { createAction } from 'redux-actions';
-import * as constants from './productsConstants';
+import createAction from "redux-actions/es/createAction";
+import * as constants from "../adminProducts/adminProductsConstants";
+
 
 export const fetchProductsStart = createAction(constants.FETCH_PRODUCTS_START);
 export const fetchProductsOk = createAction(constants.FETCH_PRODUCTS_OK);

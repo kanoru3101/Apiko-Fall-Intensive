@@ -8,6 +8,7 @@ import Header from "../scenes/Header/Header";
 import Footer from "../scenes/Footer/Footer";
 import AdminContainer from "../scenes/AdminPage/AdminContainer";
 import CartContainer from "../scenes/Cart/CartContainer";
+import Modal from 'react-modal';
 
 
 
@@ -18,9 +19,10 @@ class Desktop extends Component {
     render() {
 
 
+
         return (
           <div className={s.App}>
-            <Header/>
+             <Route component={Header}/>
               <main className={s.main}>
                   <Switch>
                       <Route
@@ -45,13 +47,11 @@ class Desktop extends Component {
                   </Switch>
 
               </main>
-            <Footer/>
+            <Route component={Footer}/>
           </div>
         );
     }
 }
-
-
 
 
 export default Desktop;

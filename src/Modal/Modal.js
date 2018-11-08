@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import ModalAddProduct from "./ModalAddProduct/ModalAddProduct";
+import CartContainer from "../scenes/Cart/CartContainer";
 
 
 
@@ -8,6 +9,9 @@ import ModalAddProduct from "./ModalAddProduct/ModalAddProduct";
 
 
 export const ModalContainer = (props) => {
+
+
+    debugger;
     switch (props.typeModal) {
         case 'ADD_PRODUCT':
             return(
@@ -20,6 +24,12 @@ export const ModalContainer = (props) => {
                 </Modal>
             );
 
+        case 'CART':
+            return(
+                <Modal isOpen={props.showModal} ariaHideApp={false}>
+                    <CartContainer/>
+                </Modal>
+            )
         default:
             return null;
     }

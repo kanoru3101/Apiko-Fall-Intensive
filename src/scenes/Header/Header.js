@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import {ModalContainer} from "../../Modal/Modal";
 
 
 
@@ -18,9 +19,12 @@ const styles = {
     }
 };
 
-const Header = ({cartItemsCount}) => {
 
-    return (
+
+
+const Header = (props) => {
+
+      return (
         <div className={styles.root}>
             <AppBar position="static" color="default">
                 <Toolbar>
@@ -33,8 +37,9 @@ const Header = ({cartItemsCount}) => {
                         <Link to={routes.admin}>Admin</Link>
                     </Typography>
 
+
                     <Typography variant="h6" color="inherit" style={styles.typography} >
-                        <Link to={routes.cart}>Cart ({cartItemsCount})</Link>
+                        <Link to={routes.cart}>Cart ({props.cartItemsCount})</Link>
                     </Typography>
 
 

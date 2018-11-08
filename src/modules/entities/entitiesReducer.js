@@ -1,4 +1,4 @@
-import {products} from "../../api/Api";
+
 
 const initialState = {
   products: {

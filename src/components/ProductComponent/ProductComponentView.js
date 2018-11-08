@@ -37,8 +37,9 @@ export const ProductComponentView = ({id, title, description, image, price, onCh
                 <Grid item xs={2}>
                     <InputLabel htmlFor={image}>Image</InputLabel>
                 </Grid>
+
                 <Grid item xs={7} >
-                    <Input name='image' fullWidth value={image} onChange={() => onChange('image')}/>
+                    <Input name='image' fullWidth value={image} onChange={onChange('image')}/>
                 </Grid>
                 <Grid item xs={2}>
                     <img src={image} alt={title} style={{maxHeight: 100, }}/>
@@ -51,7 +52,7 @@ export const ProductComponentView = ({id, title, description, image, price, onCh
                     <InputLabel htmlFor={price}>Price</InputLabel>
                 </Grid>
                 <Grid item xs={2}>
-                    <Input name='price' fullWidth value={price} onChange={() => onChange('price')}/>
+                    <Input name='price' fullWidth value={price} onChange={onChange('price')}/>
                 </Grid>
                 <Grid item xs={4}/>
                 <Grid item xs={2}>

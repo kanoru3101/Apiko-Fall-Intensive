@@ -1,12 +1,16 @@
 import React from 'react';
 import ProductListView from './ProductListView';
-import * as Api from '../../api/Api';
+
 import {ModalContainer} from "../../Modal/Modal";
 import {Route, Switch} from 'react-router-dom';
 import {routes} from "../../routes";
 import ProductContainer from "../../components/ProductComponent/ProductComponent";
 import Grid from "@material-ui/core/Grid";
+import { connect } from 'react-redux';
 import s from "./AdminPage.module.css";
+import * as productsSelectors from "../../modules/products/productsSelectors";
+import * as productOperations from '../../modules/products/productsOperations';
+
 
 
 
@@ -16,72 +20,44 @@ class AdminContainer extends React.Component{
     constructor(props){
         super(props);
 
-
         this.state = {
-            products: [],
-            loading: true,
             showModal: false,
-            typeModal: null
-        };
-    }
-
-    async componentDidMount(){
-        const [ productData ] = await AdminContainer.fetchData();
-
-        this.setState({
-            products: productData.data,
-            loading: false
-        });
-
-    }
-
-    updateProductForApi = (newProduct, oldProduct) => {
-        let updateData = {}; //object with editable fields
-        for (let item in newProduct){
-            if (newProduct[item] !== oldProduct[item]) updateData[item] = newProduct[item]
         }
-        Api.products.updateProduct(newProduct.id, updateData);
+    }
+
+
+    componentDidMount(){
+        this.props.fetchProducts()
+    }
+
+
+
+
+    updateProducts = (newProduct) => {
+
+        this.props.updateProduct(newProduct);
+
     };
 
-    updateProduct = (newProduct) => (
-        this.setState({
-            products: this.state.products.map((oldProduct) => {
-                if (oldProduct.id === newProduct.id) {
-                    this.updateProductForApi(newProduct, oldProduct);
-                    return newProduct;
-                }
-                return oldProduct;
-            }),
-        })
 
-    );
-
-
-    deleteProduct = (deleteId) => (
-        this.setState({
-            products: this.state.products.filter((oldProduct) => {
-                if (oldProduct.id === deleteId){
-                    Api.products.deleteProduct(deleteId);
-                    return false;
-                }
-                return true
-            }).map((oldProduct) => {return oldProduct})
-        })
-    );
+    deleteProduct = (deleteId) => {
+        console.log("deleteID", deleteId);
+        this.props.deleteProduct(deleteId)
+    };
 
     addProduct = (newProduct) => {
 
         this.setState({
             showModal: false
         });
-        Api.products.setProduct(newProduct)
+        this.props.addProduct(newProduct)
 
     };
 
     handleOpenModal = (typeModal) => {
         this.setState({
             showModal: true,
-            typeModal
+            typeModal,
         });
     };
 
@@ -92,9 +68,18 @@ class AdminContainer extends React.Component{
 
     render(){
 
-        if (this.state.loading){
+        if (this.props.isLoading){
             return <div>Loading...</div>
         }
+
+        if (this.props.isError){
+            return (
+                <React.Fragment>
+                    <h1>Error....</h1>
+                    <p>{this.props.error}</p>
+                </React.Fragment>);
+        }
+
 
         if (this.state.showModal){
             return <ModalContainer
@@ -102,9 +87,12 @@ class AdminContainer extends React.Component{
                 addProduct={this.addProduct}
                 {...this.state}/>
         }
+
+
         return(
             <Grid container className={s.container}>
                 <Grid item xs={12} className={s.listProduct}>
+
                     <Switch>
                         <Route
                             exact
@@ -123,8 +111,8 @@ class AdminContainer extends React.Component{
                             render={
                                 (renderProps) =>
                                     <ProductContainer
-                                        updateProduct={this.updateProduct}
-                                        {...this.state}
+                                        updateProducts={this.updateProducts}
+                                        {...this.props}
                                         {...renderProps}/>}
                         />
                     </Switch>
@@ -134,10 +122,24 @@ class AdminContainer extends React.Component{
     }
 }
 
-AdminContainer.fetchData = () => Promise.all([
-    Api.products.fetchProducts(),
-]);
+
+const mapStateToProps = (state) => ({
+    products: productsSelectors.getProducts(state),
+    isLoading: state.products.isLoading,
+    isError: !!state.products.error,
+    showModal: !!state.adminProducts.showModal,
+    error: state.products.error,
+
+});
+
+
+const mapStateToDispatch = {
+    fetchProducts: productOperations.fetchProducts,
+    updateProduct: productOperations.updateProducts,
+    deleteProduct: productOperations.deleteProduct,
+    addProduct: productOperations.addProducts,
+};
 
 
 
-export default AdminContainer;
+export default connect(mapStateToProps, mapStateToDispatch)(AdminContainer);

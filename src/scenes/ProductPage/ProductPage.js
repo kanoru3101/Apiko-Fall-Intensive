@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as productsSelectors from '../../modules/products/productsSelectors';
-import * as Api from '../../api/Api';
+
 import ProductPageView from "./ProductPageView";
 
 function ProductContainer({product}) {

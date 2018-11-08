@@ -24,9 +24,10 @@ export const products = {
         return axios.get(`/api/v1/products`);
     },
 
-    fetchProduct(id){
-        console.log('id', id[0]);
-        return axios.get(`/api/v1/products/${id[0]}`)
+    fetchProductById(arrId){
+        let query = arrId.reduce((acc, item) => `${acc}ids[]=${item}&`, '?');
+        console.log('!!!!!', query);
+        return axios.get(`/api/v1/products${query}`)
     },
 
     setProduct(data){
