@@ -1,10 +1,8 @@
 import React from 'react';
 import ProductListView from './ProductListView';
-
-import {ModalContainer} from "../../Modal/Modal";
-import {Route, Switch} from 'react-router-dom';
+import ModalContainer from "../../Modal/Modal";
+import {Route} from 'react-router-dom';
 import {routes} from "../../routes";
-import ProductContainer from "../../components/ProductComponent/ProductComponent";
 import Grid from "@material-ui/core/Grid";
 import { connect } from 'react-redux';
 import s from "./AdminPage.module.css";
@@ -19,7 +17,6 @@ import * as productOperations from '../../modules/products/productsOperations';
 class AdminContainer extends React.Component{
     constructor(props){
         super(props);
-
         this.state = {
             showModal: false,
         }
@@ -93,7 +90,7 @@ class AdminContainer extends React.Component{
             <Grid container className={s.container}>
                 <Grid item xs={12} className={s.listProduct}>
 
-                    <Switch>
+
                         <Route
                             exact
                             path={routes.admin}
@@ -106,16 +103,8 @@ class AdminContainer extends React.Component{
                                         {...this.state}/>
                             }
                         />
-                        <Route
-                            path={routes.adminProduct}
-                            render={
-                                (renderProps) =>
-                                    <ProductContainer
-                                        updateProducts={this.updateProducts}
-                                        {...this.props}
-                                        {...renderProps}/>}
-                        />
-                    </Switch>
+
+
                 </Grid>
             </Grid>
         );

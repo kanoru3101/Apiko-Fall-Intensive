@@ -5,6 +5,10 @@ export const fetchProductsStart = createAction(constants.FETCH_PRODUCTS_START);
 export const fetchProductsOk = createAction(constants.FETCH_PRODUCTS_OK);
 export const fetchProductsError = createAction(constants.FETCH_PRODUCTS_ERROR);
 
+export const fetchProduct = createAction(constants.FETCH_PRODUCT);
+
+
+
 export const deleteProductStart = createAction(constants.DELETE_PRODUCT_START);
 export const deleteProductOk = createAction(constants.DELETE_PRODUCT_OK);
 export const deleteProductError = createAction(constants.DELETE_PRODUCT_ERROR);

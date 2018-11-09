@@ -24,6 +24,8 @@ const styles = {
 
 const Header = (props) => {
 
+    console.log(props);
+
       return (
         <div className={styles.root}>
             <AppBar position="static" color="default">
@@ -34,12 +36,12 @@ const Header = (props) => {
                     </Typography>
 
                     <Typography variant="h6" color="inherit" style={styles.typography} >
-                        <Link to={routes.admin}>Admin</Link>
+
+                        <Link to={routes.admin} >Admin</Link>
                     </Typography>
 
-
                     <Typography variant="h6" color="inherit" style={styles.typography} >
-                        <Link to={routes.cart}>Cart ({props.cartItemsCount})</Link>
+                        <Link to={{pathname: routes.cart, state: { modal: true }}}>Cart ({props.cartItemsCount})</Link>
                     </Typography>
 
 

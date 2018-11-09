@@ -3,6 +3,10 @@ export const FETCH_PRODUCTS_START = 'products/FETCH_PRODUCTS_START';
 export const FETCH_PRODUCTS_OK = 'products/FETCH_PRODUCTS_OK';
 export const FETCH_PRODUCTS_ERROR = 'products/FETCH_PRODUCTS_ERROR';
 
+export const FETCH_PRODUCT = 'products/FETCH_PRODUCT';
+
+
+
 export const DELETE_PRODUCT_START = 'product/DELETE_PRODUCT_START';
 export const DELETE_PRODUCT_OK = 'product/DELETE_PRODUCT_OK';
 export const DELETE_PRODUCT_ERROR = 'product/DELETE_PRODUCT_ERROR';

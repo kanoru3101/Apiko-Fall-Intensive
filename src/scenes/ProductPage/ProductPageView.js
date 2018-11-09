@@ -5,7 +5,7 @@ import Paper from "@material-ui/core/Paper/Paper";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add"
 import BackspaceIcon from "@material-ui/icons/Backspace";
-import { withStyles } from '@material-ui/core/styles';
+
 
 const styles = theme => ({
     button: {

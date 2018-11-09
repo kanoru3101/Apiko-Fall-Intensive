@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import * as productsOperations from '../../modules/products/productsOperations';
 import * as productsSelectors from '../../modules/products/productsSelectors';
 import * as cartActions from '../../modules/cart/cartActions';
-import {Route, Switch} from "react-router-dom";
+
 import ProductListView from "./UserProductListView";
-import {routes} from "../../routes";
-import ProductContainer from '../ProductPage/ProductPage'
-import {ProductPage} from "../../components/ProductPage/ProductPage";
-import ProductLink from "../../components/ProductLink/UserProductLink";
+import Header from "../Header/Header";
+
 
 
 
@@ -48,24 +46,13 @@ class HomeContainer extends React.Component{
         }
 
         return(
-            <Switch>
-                <Route
-                    exact
-                    path={routes.home}
-                    render={() =>
-                        <ProductListView
-                            products={this.props.products}
-                            onAddToCart={this.props.addToCart}
-                        />
-                    }
+            <div>
 
+                <ProductListView
+                    products={this.props.products}
+                    onAddToCart={this.props.addToCart}
                 />
-
-                <Route
-                    path={routes.productPage}
-                    component={ProductContainer}
-                />
-            </Switch>
+            </div>
 
         );
     }
@@ -73,7 +60,7 @@ class HomeContainer extends React.Component{
 
 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, props) => ({
     products: productsSelectors.getProducts(state),
     isLoading: state.products.isLoading,
     isError: !!state.products.error,

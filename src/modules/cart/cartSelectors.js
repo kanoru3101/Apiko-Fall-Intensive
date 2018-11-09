@@ -12,6 +12,6 @@ export const getProducts = createSelector(
 
 export const totalPrice = createSelector(
     [getProducts],
-    items => items.reduce((acc, item) => acc + item.price, 0)
+    items => items.reduce((acc, item) => acc + item.price, 0),
 );
 

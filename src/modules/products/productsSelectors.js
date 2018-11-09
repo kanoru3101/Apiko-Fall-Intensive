@@ -7,6 +7,7 @@ const getProductEntities = state => state.entities.products;
 
 
 
+
 export const getProducts = createSelector(
     [getProductIds, getProductEntities],
     (products, entities) => {
@@ -17,3 +18,7 @@ export const getProduct = createSelector(
     getProductById,
     result => result,
 );
+
+
+
+

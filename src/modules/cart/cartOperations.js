@@ -12,11 +12,14 @@ export const fetchProducts = (refresh) => async (dispatch, getState) => {
         if (items.length > 0 && !refresh) {
             return;
         }
+
+
+
         dispatch(actions.fetchProductsStart());
         const res = await Api.products.fetchProductById(items);
-        const {result, entities} = normalize(res.data, schemes.ProductCollection);
+        const {entities} = normalize(res.data, schemes.ProductCollection);
         dispatch(actions.fetchProductsOk({
-            ids: result,
+            items,
             entities,
         }));
     }catch (err) {
@@ -24,7 +27,3 @@ export const fetchProducts = (refresh) => async (dispatch, getState) => {
     }
 };
 
-
-export const fettchByIds = () => async (dispatch) => {
-
-};

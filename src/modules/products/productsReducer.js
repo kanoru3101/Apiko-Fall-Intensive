@@ -7,6 +7,7 @@ const initialState={
     ids: [],
     isLoading: false,
     error: null,
+    editProduct: null
 };
 
 export default handleActions(

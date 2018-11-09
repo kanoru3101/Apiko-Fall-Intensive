@@ -2,6 +2,9 @@ import {Component} from "react";
 import {routes} from "../../routes";
 import React from "react";
 import {ProductComponentView} from "./ProductComponentView";
+import * as productsSelectors from "../../modules/products/productsSelectors";
+import * as productOperations from "../../modules/products/productsOperations";
+import connect from "react-redux/es/connect/connect";
 
  class ProductContainer extends Component{
     constructor(props){
@@ -30,6 +33,10 @@ import {ProductComponentView} from "./ProductComponentView";
 
 
     render(){
+
+        console.log(this.props);
+        debugger;
+
         return <ProductComponentView
             {...this.state}
             onChange={this.onChange}
@@ -38,4 +45,20 @@ import {ProductComponentView} from "./ProductComponentView";
     }
 }
 
-export default ProductContainer;
+const mapStateToProps = (state) => ({
+    products: productsSelectors.getProducts(state),
+    isLoading: state.products.isLoading,
+    isError: !!state.products.error,
+    error: state.products.error,
+
+});
+
+
+const mapStateToDispatch = {
+    updateProduct: productOperations.updateProducts,
+};
+
+
+
+
+export default connect(mapStateToProps, mapStateToDispatch)(ProductContainer);

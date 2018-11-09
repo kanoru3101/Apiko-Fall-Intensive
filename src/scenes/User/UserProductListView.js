@@ -8,6 +8,7 @@ const ProductListView = ({
     onAddToCart,
 }) => (
     <Grid container spacing={16} style={{maxWidth: '100%', margin: 0}}>
+
         <Grid item xs={12} style={{paddingBottom: 10, justifyContent: 'center'}}>
             <Grid container spacing={16}>
                 {products.map((item) =>

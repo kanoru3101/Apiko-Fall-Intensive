@@ -24,14 +24,12 @@ export default handleActions(
             isLoading: true,
             error: null,
         }),
-        [constants.FETCH_PRODUCTS_OK]: (state, actions) => {
-            debugger;
-            return({
+        [constants.FETCH_PRODUCTS_OK]: (state, actions) => ({
                 ...state,
                 isLoading: false,
-                entities: actions.payload.entities.products,
+                items: actions.payload.items,
             })
-        },
+        ,
         [constants.FETCH_PRODUCTS_ERROR]: (state, actions) => ({
             ...state,
             isLoading: false,
