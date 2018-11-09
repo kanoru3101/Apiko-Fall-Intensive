@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import './Desktop.module.css';
 import {Route, Switch} from 'react-router-dom';
 import {routes} from "../routes";
 import HomeContainer from "../scenes/User/HomeContainer";
-import s from './Desktop.module.css';
 import Header from "../scenes/Header/Header";
 import Footer from "../scenes/Footer/Footer";
 import AdminContainer from "../scenes/AdminPage/AdminContainer";
 import CartContainer from "../scenes/Cart/CartContainer";
 import EditProductContainer from "../scenes/EditProduct/EditProductContainer";
-
 import ProductContainer from "../scenes/ProductPage/ProductPage";
 import ModalContainer from "../Modal/Modal";
 
