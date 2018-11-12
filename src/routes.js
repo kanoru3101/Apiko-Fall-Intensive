@@ -12,4 +12,5 @@ export const routes = {
     policy: '/privacypolicy',
     auth: '/auth',
     rememberPass: '/auth/remember',
+    login: '/login',
 };

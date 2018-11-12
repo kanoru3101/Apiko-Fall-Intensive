@@ -18,7 +18,6 @@ export const fetchProducts = (refresh) => async (dispatch, getState) => {
       const res = await Api.products.fetchProducts();
       const {result, entities} = normalize(res.data, schemes.ProductCollection);
 
-
       dispatch(actions.fetchProductsOk({
           ids: result,
           entities,
@@ -35,6 +34,7 @@ export const deleteProduct = (deleteId) => async (dispatch) => {
     try {
         dispatch(actions.deleteProductStart());
         await Api.products.deleteProduct(deleteId);
+
         dispatch(actions.deleteProductOk(deleteId));
     } catch (e) {
         console.log(e);
@@ -50,26 +50,18 @@ export const updateProducts = (newProduct) => async (dispatch) => {
         dispatch(actions.updateProductStart());
 
 
-        //await Api.products.updateProduct(newProduct.id, newProduct);
-        //const [product] = updateProduct.data;
+        const data = await Api.products.updateProduct(newProduct.id, newProduct);
+        const upDate = data.data[0];
 
-        /*
-      dispatch(actions.updateProductOk({
-          entities: {
-              products: {
-                  [product.id]: product,
-              },
-          },
-      }));
-      */
-        Api.products.updateProduct(newProduct.id, newProduct);
-        const res = await Api.products.fetchProducts();
-        const {result, entities} = normalize(res.data, schemes.ProductCollection);
+        //const res = await Api.products.fetchProducts();
+       // const {result, entities} = normalize(res.data, schemes.ProductCollection);
 
-
-        dispatch(actions.fetchProductsOk({
-            ids: result,
-            entities,
+        dispatch(actions.updateProductOk({
+            entities: {
+                products: {
+                    [upDate.id]: upDate
+                }
+            }
         }));
 
     }
@@ -86,9 +78,8 @@ export const addProducts = (newProduct) => async (dispatch) => {
 
         const addProduct = await Api.products.setProduct(newProduct);
         const {result, entities} = normalize(addProduct.data, schemes.ProductCollection);
-
         dispatch(actions.createProductOk({
-            ids: result,
+            ids: result[0],
             entities,
         }));
     } catch (e) {

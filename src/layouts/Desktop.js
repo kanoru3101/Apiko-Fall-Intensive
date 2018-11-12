@@ -8,6 +8,7 @@ import AdminContainer from "../scenes/AdminPage/AdminContainer";
 import CartContainer from "../scenes/Cart/CartContainer";
 import EditProductContainer from "../scenes/EditProduct/EditProductContainer";
 import ProductContainer from "../scenes/ProductPage/ProductPage";
+import LoginContainer from '../scenes/Login/LoginPage';
 import ModalContainer from "../Modal/Modal";
 
 const styles = {
@@ -69,7 +70,7 @@ class Desktop extends Component {
             location.state.modal &&
             this.previousLocation !== location &&
             this.previousLocation.pathname === '/'
-        ); // not initial render
+        );
 
 
 
@@ -102,6 +103,10 @@ class Desktop extends Component {
                         <Route
                             path={routes.cart}
                             component={CartContainer}
+                        />
+                        <Route
+                            path={routes.login}
+                            component={LoginContainer}
                         />
                     </Switch>
                     {isModal ? this.renderModal(isModal) : null}

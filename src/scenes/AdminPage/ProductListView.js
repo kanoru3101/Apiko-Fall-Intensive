@@ -8,6 +8,10 @@ const ADMIN = "ADMIN";
 const ADD_PRODUCT = "ADD_PRODUCT";
 
 
+const styles = {
+    btn: {paddingBottom: 10, paddingLeft: 10, marginBottom: 10},
+
+};
 
 
 const ProductListView = ({
@@ -18,7 +22,7 @@ const ProductListView = ({
 
 }) => (
     <Grid container>
-        <Grid item xs={12} style={{paddingBottom: 10}}>
+        <Grid item xs={12} style={styles.btn}>
 
             <Button variant="fab" color="primary" mini aria-label="Add" onClick={() => handleOpenModal(ADD_PRODUCT)}>
                 <AddIcon />

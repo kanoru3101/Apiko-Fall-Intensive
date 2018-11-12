@@ -7,7 +7,6 @@ const initialState={
     ids: [],
     isLoading: false,
     error: null,
-    editProduct: null
 };
 
 export default handleActions(
@@ -31,12 +30,14 @@ export default handleActions(
             ...state,
             isLoading: true
         }),
-        [constants.DELETE_PRODUCT_OK]: (state, actions) => ({
-            ...state,
-            isLoading: false,
-            ids: state.ids.filter(id => id !== actions.payload),
+        [constants.DELETE_PRODUCT_OK]: (state, actions) => {
 
-        }),
+            return({
+                ...state,
+                isLoading: false,
+                ids: state.ids.filter(id => id !== actions.payload),
+            })
+        },
         [constants.DELETE_PRODUCT_ERROR]: (state, actions) => ({
             ...state,
             isLoading: false,
@@ -47,12 +48,10 @@ export default handleActions(
             isLoading: true,
             error: null,
         }) ,
-        [constants.UPDATE_PRODUCT_OK]: (state) => {
-            return({
-                ...state,
-                isLoading: false,
-            })
-        }
+        [constants.UPDATE_PRODUCT_OK]: (state, actions) => ({
+            ...state,
+            isLoading: false,
+        })
         ,
         [constants.UPDATE_PRODUCT_ERROR]: (state, actions) => ({
             ...state,

@@ -5,12 +5,26 @@ import {Route} from 'react-router-dom';
 import {routes} from "../../routes";
 import Grid from "@material-ui/core/Grid";
 import { connect } from 'react-redux';
-import s from "./AdminPage.module.css";
 import * as productsSelectors from "../../modules/products/productsSelectors";
 import * as productOperations from '../../modules/products/productsOperations';
 
 
+const styles = {
+    container:{
+        display: 'flex',
+        width: '100%',
+        justifyContent: 'center',
+        flexDirection: 'row'
+    },
 
+    listProduct : {
+        textAlign: 'left',
+        paddingLeft: 20,
+        textDecoration: 'none',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+    }
+};
 
 
 
@@ -27,14 +41,9 @@ class AdminContainer extends React.Component{
         this.props.fetchProducts()
     }
 
-
-
-
-    updateProducts = (newProduct) => {
-
-        this.props.updateProduct(newProduct);
-
-    };
+    componentDidUpdate(){
+        this.props.fetchProducts()
+    }
 
 
     deleteProduct = (deleteId) => {
@@ -43,7 +52,6 @@ class AdminContainer extends React.Component{
     };
 
     addProduct = (newProduct) => {
-
         this.setState({
             showModal: false
         });
@@ -87,8 +95,8 @@ class AdminContainer extends React.Component{
 
 
         return(
-            <Grid container className={s.container}>
-                <Grid item xs={12} className={s.listProduct}>
+            <Grid container style={styles.container}>
+                <Grid item xs={12} style={styles.listProduct}>
 
 
                         <Route

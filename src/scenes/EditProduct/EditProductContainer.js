@@ -4,6 +4,7 @@ import * as productsSelectors from "../../modules/products/productsSelectors";
 import * as productsOperations from "../../modules/products/productsOperations";
 import { connect } from 'react-redux';
 import EditProductView from "./EditProductView";
+import {routes} from "../../routes";
 
 
 
@@ -11,13 +12,7 @@ import EditProductView from "./EditProductView";
 class EditProductContainer extends Component{
     constructor(props){
         super(props);
-        this.state ={
-            id: this.props.match.params.id,
-            title: '',
-            description: '',
-            image: '',
-            price: '',
-        }
+
     }
 
     componentDidMount(){
@@ -25,26 +20,28 @@ class EditProductContainer extends Component{
 
     }
 
-    updateProducts = (newProduct) => {
-        this.props.updateProduct(newProduct);
-    };
+
 
     onSubmit = (e) => {
-        //e.preventDefault();
-        debugger;
+        e.preventDefault();
+        this.props.updateProduct(this.state);
+        this.props.history.push(routes.admin);
+
 
     };
 
-    onChange = (item) => ({target: value}) => {
-        debugger;
-        console.log();
-        console.log(this.state);
+    onChange = (item) => ({target: {value}}) => {
+
+        if (this.state === null){
+            this.setState({
+                ...this.props.product
+            })
+        }
+
         this.setState({
-            title: this.state.title === '' ? this.props.product.title : this.state.title,
-            description: this.state.description === '' ? this.props.product.description : this.state.description,
-            image: this.state.image === '' ? this.props.product.image : this.state.image,
-            price: this.state.price === '' ? this.props.product.price : this.state.price,
-        })
+            [item]: value,
+        });
+
     };
 
 
@@ -54,8 +51,16 @@ class EditProductContainer extends Component{
             return <div>Loading...</div>
         }
 
+        if (this.state){
+            return (
+                <EditProductView
+                    item={this.state}
+                    onSubmit={this.onSubmit}
+                    onChange={this.onChange}
+                />
+            )
+        }
         else {
-
             return (
                 <EditProductView
                     item={this.props.product}
@@ -64,6 +69,8 @@ class EditProductContainer extends Component{
                 />
             )
         }
+
+
 
     }
 }

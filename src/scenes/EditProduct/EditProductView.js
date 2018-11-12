@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from "@material-ui/core/Button/Button";
-import { Fields } from 'redux-form'
+
 
 
 const styles = theme => ({
@@ -25,7 +25,6 @@ const styles = theme => ({
 
 const EditProductView = ({item, onChange, onSubmit}) => {
 
-
    return(
        <form className={styles.formStyle} onSubmit={onSubmit}>
            <Grid container spacing={24}>
@@ -45,7 +44,9 @@ const EditProductView = ({item, onChange, onSubmit}) => {
                            <InputLabel htmlFor={item.description}>Description</InputLabel>
                        </Grid>
                        <Grid item xs={8}>
-                           <TextField fullWidth multiline rows={4} name='description' value={item.description} />
+                           <TextField fullWidth multiline rows={4} name='description'
+                                      value={item.description}
+                                      onChange={onChange('description')} />
                        </Grid>
                    </Grid>
                </Grid>
@@ -56,7 +57,7 @@ const EditProductView = ({item, onChange, onSubmit}) => {
                        </Grid>
 
                        <Grid item xs={7} >
-                           <Input name='image' fullWidth value={item.image} />
+                           <Input name='image' fullWidth value={item.image} onChange={onChange('image')}/>
                        </Grid>
                        <Grid item xs={2}>
                            <img src={item.image} alt={item.title} style={{maxHeight: 100, }}/>
@@ -69,7 +70,7 @@ const EditProductView = ({item, onChange, onSubmit}) => {
                            <InputLabel htmlFor={item.price}>Price</InputLabel>
                        </Grid>
                        <Grid item xs={2}>
-                           <Input name='price' fullWidth value={item.price} />
+                           <Input name='price' fullWidth value={item.price} onChange={onChange('price')} />
                        </Grid>
                        <Grid item xs={4}/>
                        <Grid item xs={2}>
