@@ -3,8 +3,8 @@ import { Form, Field } from 'react-final-form';
 import FormInput from '../../components/FormInput/FormInput';
 import Grid from "@material-ui/core/Grid/Grid";
 import Button from "@material-ui/core/Button/Button";
-
-
+import * as Api from '../../api/Api';
+import {FORM_ERROR} from 'final-form';
 
 function validate(values) {
 
@@ -23,8 +23,20 @@ function validate(values) {
 
 function LoginContainer() {
     
-    function onSubmit(e) {
-        debugger;
+    async function onSubmit(values, form) {
+        try {
+
+            const res = await Api.Auth.login(values);
+
+            Api.setToken(res.data.token);
+
+            form.reset();
+
+        }catch (e) {
+            return{
+                [FORM_ERROR]: 'Wrong email or password',
+            };
+        }
     }
 
     return(
@@ -45,7 +57,9 @@ function LoginContainer() {
                         <FormInput {...input} meta={meta}/>
                         )}
                     </Field>
+
                     <Button mini onClick={handleSubmit}>Login</Button>
+                    {submitError && <div>{submitError}</div>}
                 </Grid>
                 )}
         />

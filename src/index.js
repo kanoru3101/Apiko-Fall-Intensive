@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Desktop from './layouts/Desktop';
 import * as serviceWorker from './serviceWorker';
+import * as appOperations from './modules/app/appOperations';
 import {BrowserRouter} from 'react-router-dom';
 import { Router, Route, Link } from 'react-router-dom';
 import history from './history';
@@ -13,15 +14,34 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store/store';
 import App from "./App";
 
-ReactDOM.render(
-    <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-            <Router history={history}>
-                <App/>
-            </Router>
-        </PersistGate>
-    </Provider>
-    , document.getElementById('root'));
+
+class MainApp extends React.Component {
+    state = {
+        isLoading: true,
+    };
+
+    componentDidMount(){
+        store.dispatch(appOperations.init());
+        this.setState({isLoading: false});
+    }
+
+    render(){
+        if (this.state.isLoading){
+            return('Loading....');
+        }
+        return (
+            <Provider store={store}>
+                <PersistGate loading={null} persistor={persistor}>
+                    <Router history={history}>
+                        <App/>
+                    </Router>
+                </PersistGate>
+            </Provider>
+        );
+    }
+}
+
+ReactDOM.render(<MainApp/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

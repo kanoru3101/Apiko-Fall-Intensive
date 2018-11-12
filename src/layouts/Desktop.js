@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import {routes} from "../routes";
 import HomeContainer from "../scenes/User/HomeContainer";
 import Header from "../scenes/Header/Header";
@@ -10,6 +10,8 @@ import EditProductContainer from "../scenes/EditProduct/EditProductContainer";
 import ProductContainer from "../scenes/ProductPage/ProductPage";
 import LoginContainer from '../scenes/Login/LoginPage';
 import ModalContainer from "../Modal/Modal";
+import * as Api from '../api/Api';
+
 
 const styles = {
     App: {
@@ -24,6 +26,14 @@ const styles = {
 
     }
 };
+
+
+function ProtectedRoute(props){
+    if (!Api.isAuthenticated()){
+        return <Redirect to="/login"/>;
+    }
+    return <Route {...props} />;
+}
 
 
 
@@ -62,6 +72,7 @@ class Desktop extends Component {
         }
     };
 
+
     render() {
         let { location } = this.props;
 
@@ -71,9 +82,6 @@ class Desktop extends Component {
             this.previousLocation !== location &&
             this.previousLocation.pathname === '/'
         );
-
-
-
         return (
             <div className={styles.App}>
                 <Header/>
@@ -84,19 +92,16 @@ class Desktop extends Component {
                             path={routes.home}
                             component={HomeContainer}
                         />
-                        <Route
+                        <ProtectedRoute
                             exact
                             path={routes.admin}
                             component={AdminContainer}
                         />
-
-
                         <Route
                             path={routes.productPage}
                             component={ProductContainer}
                         />
-
-                        <Route
+                        <ProtectedRoute
                             path={routes.adminProduct}
                             component={EditProductContainer}
                         />

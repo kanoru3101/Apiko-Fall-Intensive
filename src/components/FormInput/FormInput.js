@@ -73,9 +73,9 @@ const FormInput = ({label, required, meta, ...props}) => {
     */
 
     return(
-        <Grid item xs={12} justify={"center"}>
+        <Grid item xs={12} >
             <Grid container spacing={16} alignItems={"center"} justify={"center"}>
-                <Grid item xs={12} justify={"center"}>
+                <Grid item xs={12}>
                     <TextField
                         className={classes.margin}
                         InputLabelProps={{

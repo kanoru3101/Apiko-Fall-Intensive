@@ -1,12 +1,13 @@
 import React from 'react';
 import ProductListView from './ProductListView';
 import ModalContainer from "../../Modal/Modal";
-import {Route} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 import {routes} from "../../routes";
 import Grid from "@material-ui/core/Grid";
 import { connect } from 'react-redux';
 import * as productsSelectors from "../../modules/products/productsSelectors";
 import * as productOperations from '../../modules/products/productsOperations';
+import * as Api from '../../api/Api';
 
 
 const styles = {
@@ -97,23 +98,12 @@ class AdminContainer extends React.Component{
         return(
             <Grid container style={styles.container}>
                 <Grid item xs={12} style={styles.listProduct}>
-
-
-                        <Route
-                            exact
-                            path={routes.admin}
-                            render={
-                                () =>
-                                    <ProductListView
-                                        handleOpenModal={this.handleOpenModal}
-                                        deleteProduct={this.deleteProduct}
-                                        {...this.props}
-                                        {...this.state}/>
-                            }
-                        />
-
-
-                </Grid>
+                    <ProductListView
+                        handleOpenModal={this.handleOpenModal}
+                        deleteProduct={this.deleteProduct}
+                        {...this.props}
+                        {...this.state}/>
+                    </Grid>
             </Grid>
         );
     }
