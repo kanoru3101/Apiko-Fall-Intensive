@@ -11,6 +11,7 @@ import ProductContainer from "../scenes/ProductPage/ProductPage";
 import LoginContainer from '../scenes/Login/LoginPage';
 import ModalContainer from "../Modal/Modal";
 import * as Api from '../api/Api';
+import {connect} from "react-redux";
 
 
 const styles = {
@@ -29,7 +30,9 @@ const styles = {
 
 
 function ProtectedRoute(props){
-    if (!Api.isAuthenticated()){
+    console.log(props.token);
+    debugger;
+    if (!props.token){
         return <Redirect to="/login"/>;
     }
     return <Route {...props} />;
@@ -43,8 +46,6 @@ class Desktop extends Component {
         this.state = {
             showModal: false
         }
-
-
     }
     previousLocation = this.props.location;
 
@@ -82,9 +83,10 @@ class Desktop extends Component {
             this.previousLocation !== location &&
             this.previousLocation.pathname === '/'
         );
+
         return (
             <div className={styles.App}>
-                <Header/>
+                <Header location={location} />
                 <main style={styles.main}>
                     <Switch location={isModal ? this.previousLocation : location}>
                         <Route
@@ -95,6 +97,7 @@ class Desktop extends Component {
                         <ProtectedRoute
                             exact
                             path={routes.admin}
+                            {...this.props}
                             component={AdminContainer}
                         />
                         <Route
@@ -103,6 +106,7 @@ class Desktop extends Component {
                         />
                         <ProtectedRoute
                             path={routes.adminProduct}
+
                             component={EditProductContainer}
                         />
                         <Route
@@ -124,6 +128,8 @@ class Desktop extends Component {
 }
 
 
+const mapStateToProps = (state) => ({
+    token: state.app.token,
+});
 
-
-export default Desktop;
+export default connect(mapStateToProps)(Desktop);

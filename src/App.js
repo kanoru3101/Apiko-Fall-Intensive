@@ -4,12 +4,18 @@ import Desktop from "./layouts/Desktop";
 
 
 
-function App() {
-    return (
-        <Router>
-            <Route component={Desktop} />
-        </Router>
-    );
+
+class App extends React.Component{
+
+
+    render(){
+        return (
+            <Router>
+                <Route component={Desktop} />
+            </Router>
+        );
+    }
+
 }
 
 export default App;

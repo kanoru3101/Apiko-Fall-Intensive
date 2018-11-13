@@ -43,7 +43,7 @@ import Button from "@material-ui/core/Button/Button";
                         />
                     </Modal>
                 );
-                break;
+
 
             case 'CART':
                 return(
@@ -52,7 +52,7 @@ import Button from "@material-ui/core/Button/Button";
                         <Button onClick={this.goBack}>Close</Button>
                     </Modal>
                 );
-                break;
+
             default:
                 return null;
         }

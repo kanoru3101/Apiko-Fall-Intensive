@@ -2,37 +2,31 @@ import axios from 'axios';
 
 
 
+
 let _token = null;
 
 
+
+
+
+export const isAuthenticated = () => {
+    return !!_token;
+};
+
 export const removeToken = () => {
-    localStorage.removeItem('token');
+    //localStorage.removeItem('token');
     axios.defaults.headers.common.Authorization = null;
 };
 
-
-export const isAuthenticated = () => !!_token;
-
-/*
-* Use fuc.....
-*
-* @params
-* token {sting} -
-* @return
-*
-*
-* */
 export const setToken = (token) => {
     _token = token;
-
-    window.localStorage.setItem('token', token);
-
+    //window.localStorage.setItem('token', token);
     axios.defaults.headers.common.Authorization = _token ? `Bearer ${_token}` : null;
 };
 
-export const initApi = () => {
-    const token = localStorage.getItem('token');
-
+export const initApi = (tokenUser) => {
+    //const token = localStorage.getItem('token');
+    const token = tokenUser;
     setToken(token);
 };
 
@@ -65,6 +59,11 @@ export const Auth = {
     login(body){
         return axios.post(`/api/v2/auth/login`, body);
     },
+
+    register(body){
+        return axios.post(`/api/v2/auth/register`, body)
+    }
+
 };
 
 export const User = {

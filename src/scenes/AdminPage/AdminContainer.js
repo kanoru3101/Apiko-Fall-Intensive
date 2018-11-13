@@ -1,13 +1,11 @@
 import React from 'react';
 import ProductListView from './ProductListView';
 import ModalContainer from "../../Modal/Modal";
-import {Route, Redirect} from 'react-router-dom';
-import {routes} from "../../routes";
 import Grid from "@material-ui/core/Grid";
 import { connect } from 'react-redux';
 import * as productsSelectors from "../../modules/products/productsSelectors";
 import * as productOperations from '../../modules/products/productsOperations';
-import * as Api from '../../api/Api';
+
 
 
 const styles = {

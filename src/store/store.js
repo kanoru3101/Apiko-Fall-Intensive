@@ -6,19 +6,17 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 
-let initialState = {};
-
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['cart', 'token']
+    whitelist: ['cart', 'app']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootModule);
 
 const store = createStore(
     persistedReducer,
-    initialState,
+    undefined,
     applyMiddleware(reduxThunk, logger),
 );
 

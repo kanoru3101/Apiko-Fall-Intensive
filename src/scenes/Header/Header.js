@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import * as appOperations from '../../modules/app/appOperations';
 
 
 
@@ -19,13 +20,34 @@ const styles = {
     }
 };
 
+const SingIn = (props) => {
+
+    const clearToken = (token) => {
+        props.removeToken(token);
+    };
+
+    const handleButton = () => {
+
+        if (props.token) {
+            return <Link to={props.location.pathname}><button onClick={() => {clearToken(props.token)}}>logout</button></Link>;
+        }
+        else {
+            return <Link to={routes.login}><button>login/register</button></Link>;
+        }
+    };
+
+    return(
+        <div>
+            {props.token && <div>{props.user.firstName}</div>}
+            {handleButton()}
+        </div>
+    );
+};
+
 
 
 
 const Header = (props) => {
-
-    console.log(props);
-
       return (
         <div className={styles.root}>
             <AppBar position="static" color="default">
@@ -44,8 +66,9 @@ const Header = (props) => {
                         <Link to={{pathname: routes.cart, state: { modal: true }}}>Cart ({props.cartItemsCount})</Link>
                     </Typography>
 
+
                     <Typography variant="h6" color="inherit" style={styles.typography} >
-                        <Link to={routes.login}><button>login</button></Link>
+                        <SingIn {...props}/>
                     </Typography>
 
 
@@ -56,9 +79,15 @@ const Header = (props) => {
     );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, props) => ({
     cartItemsCount: state.cart.items.length,
+    token: state.app.token,
+    user: state.app.user,
+    location: props.location,
 });
 
+const mapStateToDispatch = {
+    removeToken: appOperations.removeToken,
+};
 
-export default connect(mapStateToProps)(withStyles(styles)(Header));
+export default connect(mapStateToProps, mapStateToDispatch)(withStyles(styles)(Header));

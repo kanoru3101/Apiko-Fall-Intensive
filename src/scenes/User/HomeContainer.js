@@ -5,7 +5,7 @@ import * as productsSelectors from '../../modules/products/productsSelectors';
 import * as cartActions from '../../modules/cart/cartActions';
 
 import ProductListView from "./UserProductListView";
-import Header from "../Header/Header";
+
 
 
 

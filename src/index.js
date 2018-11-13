@@ -1,15 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Desktop from './layouts/Desktop';
 import * as serviceWorker from './serviceWorker';
 import * as appOperations from './modules/app/appOperations';
-import {BrowserRouter} from 'react-router-dom';
-import { Router, Route, Link } from 'react-router-dom';
+import { Router} from 'react-router-dom';
 import history from './history';
-
 import {Provider} from 'react-redux';
-
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store/store';
 import App from "./App";
@@ -23,7 +19,9 @@ class MainApp extends React.Component {
     componentDidMount(){
         store.dispatch(appOperations.init());
         this.setState({isLoading: false});
+
     }
+
 
     render(){
         if (this.state.isLoading){
@@ -31,7 +29,7 @@ class MainApp extends React.Component {
         }
         return (
             <Provider store={store}>
-                <PersistGate loading={null} persistor={persistor}>
+                <PersistGate loading={<div>Store loading</div>} persistor={persistor}>
                     <Router history={history}>
                         <App/>
                     </Router>
@@ -40,6 +38,8 @@ class MainApp extends React.Component {
         );
     }
 }
+
+
 
 ReactDOM.render(<MainApp/>, document.getElementById('root'));
 
